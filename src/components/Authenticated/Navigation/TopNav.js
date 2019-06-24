@@ -40,6 +40,12 @@ class TopNav extends Component {
     };
 
     render() {
+        let active;
+        if (this.state.show) {
+            active = 'active';
+        } else {
+            active = '';
+        }
         return (
             <div>
                 <header
@@ -58,8 +64,13 @@ class TopNav extends Component {
 
                             <div className="right-side">
                                 <div className="header-widget">
-                                    <div className="header-notifications user-menu">
-                                        <div className="header-notifications-trigger">
+                                    <div
+                                        className={`header-notifications user-menu ${active}`}
+                                    >
+                                        <div
+                                            className="header-notifications-trigger"
+                                            onClick={this.toggleDropdown}
+                                        >
                                             <a href="#">
                                                 <div
                                                     className="user-avatar status-online"
@@ -71,12 +82,13 @@ class TopNav extends Component {
                                                 </div>
                                             </a>
                                         </div>
+                                        <ProfileDropdown
+                                            show={this.state.show}
+                                            initial={this.state.initial}
+                                        />
                                     </div>
                                 </div>
-                                <ProfileDropdown
-                                    show={this.state.show}
-                                    initial={this.state.initial}
-                                />
+
                                 <span className="mmenu-trigger">
                                     <button
                                         className="hamburger hamburger--collapse"

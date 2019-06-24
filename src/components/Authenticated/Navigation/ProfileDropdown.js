@@ -1,8 +1,11 @@
 //libraries
 import React, { Component } from 'react';
 import { FaCircle, FaCog, FaPowerOff, FaCoins } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Spring } from 'react-spring/renderprops';
+
+//images
+import user from '../../../assets/images/user-avatar-placeholder.png';
 
 class ProfileDropdown extends Component {
     render() {
@@ -34,10 +37,7 @@ class ProfileDropdown extends Component {
                         <div className="user-status">
                             <div className="user-details">
                                 <div className="user-avatar status-online">
-                                    <img
-                                        src="images/user-avatar-small-01.jpg"
-                                        alt=""
-                                    />
+                                    <img src={user} alt="" />
                                 </div>
                                 <div className="user-name">Tom Smith</div>
                             </div>
@@ -45,16 +45,16 @@ class ProfileDropdown extends Component {
 
                         <ul className="user-menu-small-nav">
                             <li>
-                                <a href="dashboard-post-a-job.html">
+                                <Link to="/become/freelancer">
                                     <i className="icon-material-outline-person-pin" />
                                     Make Money Doing Jobs
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="dashboard-settings.html">
+                                <Link to="/setting">
                                     <i className="icon-material-outline-settings" />{' '}
                                     Settings
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a href="index-logged-out.html">
