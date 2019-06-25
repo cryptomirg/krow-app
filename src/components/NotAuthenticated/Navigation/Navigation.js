@@ -8,7 +8,7 @@ import BottomNav from './BottomNav';
 class NotAuthenticatedNavigation extends Component {
     render() {
         return (
-            <div id="wrapper">
+            <div>
                 <TopNav />
                 <div className="clearfix" />
                 <div>{this.props.children}</div>

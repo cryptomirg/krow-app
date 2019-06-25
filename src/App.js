@@ -1,7 +1,7 @@
 //libraries
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 
 //Authenticated Components
 import Navigation from './components/Authenticated/Navigation/Navigation';
@@ -24,35 +24,58 @@ import Payment from './components/Authenticated/Payment/Payment';
 //AdminComponents
 
 //Configurations
-// import config from './aws-config';
+import config from './configuration/aws-config.json';
 
 //configures aws
-// Amplify.configure({
-//     Auth: {
-//         region: config.cognito.REGION,
-//         userPoolId: config.cognito.USER_POOL_ID,
-//         userPoolWebClientId: config.cognito.APP_CLIENT_ID,
-//         identityPoolId: config.cognito.IDENTITY_POOL_ID
-//     },
-//     Storage: {
-//         AWSS3: {
-//             region: config.cognito.REGION,
-//             bucket: config.cognito.BUCKET
-//         }
-//     }
-// });
+Amplify.configure({
+    Auth: {
+        region: config.cognito.REGION,
+        userPoolId: config.cognito.USER_POOL_ID,
+        userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+        identityPoolId: config.cognito.IDENTITY_POOL_ID
+    },
+    Storage: {
+        AWSS3: {
+            region: config.cognito.REGION,
+            bucket: config.cognito.BUCKET
+        }
+    }
+});
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            isAuthenticated: true,
             navigator: null
         };
     }
+    async componentDidMount() {
+        const user = await this.getUser();
 
-    componentDidMount() {
-        if (this.state.isAuthenticated) {
+        //Checks if user is authenticated by aws.
+        if (user === 'not authenticated') {
+            this.setState({
+                navigator: (
+                    <NotAuthenticatedNavigation>
+                        <Switch>
+                            <Route exact path="/" component={Landing} />
+                            <Route exact path="/login" component={Login} />
+                            <Route
+                                exact
+                                path="/register"
+                                component={Register}
+                            />
+                            <Route
+                                exact
+                                path="/forgotPassword"
+                                component={ForgotPassword}
+                            />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </NotAuthenticatedNavigation>
+                )
+            });
+        } else {
             this.setState({
                 navigator: (
                     <Navigation>
@@ -76,28 +99,20 @@ class App extends Component {
                     </Navigation>
                 )
             });
-        } else {
-            this.setState({
-                navigator: (
-                    <NotAuthenticatedNavigation>
-                        <Switch>
-                            <Route exact path="/" component={Landing} />
-                            <Route exact path="/login" component={Login} />
-                            <Route
-                                exact
-                                path="/register"
-                                component={Register}
-                            />
-                            <Route
-                                exact
-                                path="/forgotPassword"
-                                component={ForgotPassword}
-                            />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </NotAuthenticatedNavigation>
-                )
+        }
+    }
+
+    //get current user information
+    async getUser() {
+        try {
+            const user = await Auth.currentAuthenticatedUser({
+                bypassCache: true
             });
+            console.log(user);
+            return user;
+        } catch (error) {
+            console.log(error);
+            return error;
         }
     }
 

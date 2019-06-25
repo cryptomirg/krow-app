@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import { FaBars } from 'react-icons/fa';
+
+//components
 import ProfileDropdown from './ProfileDropdown';
 
 //images
@@ -25,8 +28,7 @@ class TopNav extends Component {
     }
 
     async toggleDropdown(event) {
-        await this.setState({ show: !this.state.show, initial: false });
-        console.log(this.state.show);
+        await this.setState({ show: !this.state.show });
     }
 
     handleClickOutside = event => {
@@ -60,6 +62,12 @@ class TopNav extends Component {
                                         <img src={logo} alt="" />
                                     </Link>
                                 </div>
+
+                                <FaBars
+                                    className="toggleBar"
+                                    size="30"
+                                    onClick={this.props.toggleSideNav}
+                                />
                             </div>
 
                             <div className="right-side">

@@ -10,7 +10,7 @@ class TopNav extends Component {
         return (
             <header
                 id="header-container"
-                className="fullwidth dashboard-header not-sticky"
+                className="fullwidth dashboard-header sticky-important"
             >
                 <div id="header">
                     <div className="container">

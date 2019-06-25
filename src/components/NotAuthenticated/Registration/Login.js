@@ -33,7 +33,7 @@ class Login extends Component {
                                             className="input-text with-border"
                                             name="emailaddress"
                                             id="emailaddress"
-                                            placeholder="Email Address or Phone Number"
+                                            placeholder="Email Address"
                                             required
                                         />
                                     </div>

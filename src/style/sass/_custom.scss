@@ -7,12 +7,23 @@ $landing-image: url('../../assets/images/chores.jpg');
     background-image: $landing-image;
 }
 
-body{
-    overflow: hidden;
-}
+
 .dashboard-content-container{ 
     /* Standard */
     height: 100%;
+}
+
+.sticky-important{
+    position: sticky !important;
+}
+
+.toggleBar{
+    height:$header-height;
+    position: absolute;
+    padding-left: 5px; 
+    &:hover{
+        color:$primary-color;
+    }
 }
 
 .profileDropdown{
