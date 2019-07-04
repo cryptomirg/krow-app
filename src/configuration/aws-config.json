@@ -1,0 +1,9 @@
+{
+    "cognito": {
+        "REGION": "us-east-2",
+        "USER_POOL_ID": "us-east-2_8FWwRGq0v",
+        "IDENTITY_POOL_ID": "us-east-2:67baf8e8-c8a9-4009-aeba-705572cd520f",
+        "APP_CLIENT_ID": "71g7aoqaescfp6llkqn76675sd",
+        "BUCKET": "krow-upload"
+    }
+}

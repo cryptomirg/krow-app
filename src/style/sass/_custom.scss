@@ -1,0 +1,60 @@
+@import './variables';
+/* Add here all your CSS customizations */
+
+$landing-image: url('../../assets/images/chores.jpg');
+
+.photo-section{
+    background-image: $landing-image;
+}
+
+.dashboard-content-container{ 
+    /* Standard */
+    height: 100%;
+}
+
+.sticky-important{
+    position: sticky !important;
+}
+
+.msg {
+    margin:0 auto;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    background-color: rgba(0, 219, 0, 0.582)
+}
+
+.error-msg {
+    margin:0 auto;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    background-color: rgba(255, 17, 0, 0.507) 
+}
+
+.toggleBar{
+    height:$header-height;
+    position: absolute;
+    padding-left: 5px; 
+    &:hover{
+        color:$primary-color;
+    }
+}
+
+.profileDropdown{
+    width: 250px;
+    height: 200px;
+    float: right;
+    position: fixed;
+    right: 250px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    div{
+        padding:5px;
+        &:hover{
+            background-color:rgba(0, 0, 255, 0.075);
+            border-left: 2px solid;
+        }
+    }
+}
